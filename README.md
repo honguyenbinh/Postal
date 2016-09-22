@@ -16,12 +16,12 @@ Postal is a swift framework providing simple access to common email providers.
 ```swift
 let postal = Postal(configuration: .icloud(login: "myemail@icloud.com", password: "mypassword"))
 postal.connect { result in
-		switch result {
-		case .Success:
-		    print("success")
-		case .Failure(let error):
-		    print("error: \(error)")
-		}
+	switch result {
+	case .Success:
+	    print("success")
+	case .Failure(let error):
+	    print("error: \(error)")
+	}
 }
 ```
 
