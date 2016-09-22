@@ -45,20 +45,10 @@ func checkCertificate(_ stream: UnsafeMutablePointer<mailstream>, hostname: Stri
     guard noErr == SecTrustCreateWithCertificates(certificates as CFTypeRef, policy, &trustCallback) else { return false }
     guard let trust = trustCallback else { return false }
     
-    #if swift(>=2.3)
-        var trustResult: SecTrustResultType = .invalid
-        guard noErr == SecTrustEvaluate(trust, &trustResult) else { return false }
-        switch trustResult {
-        case .unspecified, .proceed: return true
-        default: return false
-        }
-    #else
-        var trustResult: SecTrustResultType = UInt32(kSecTrustResultInvalid)
-        guard noErr == SecTrustEvaluate(trust, &trustResult) else { return false }
-        
-        switch Int(trustResult) {
-        case kSecTrustResultUnspecified, kSecTrustResultProceed: return true
-        default: return false
-        }
-    #endif
+    var trustResult: SecTrustResultType = .invalid
+    guard noErr == SecTrustEvaluate(trust, &trustResult) else { return false }
+    switch trustResult {
+    case .unspecified, .proceed: return true
+    default: return false
+    }
 }

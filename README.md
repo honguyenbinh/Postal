@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/snipsco/Postal.svg?branch=master)](https://travis-ci.org/snipsco/Postal)
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Pods](https://img.shields.io/badge/Pods-compatible-4BC51D.svg?style=flat)](https://cocoapods.org/) 
-[![Swift 2.3.x](https://img.shields.io/badge/Swift-2.3.x-orange.svg?style=flat)](https://swift.org/)
+[![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg?style=flat)](https://swift.org/)
 ![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS-lightgrey.svg?style=flat)
 
 Postal is a swift framework providing simple access to common email providers.
@@ -77,12 +77,6 @@ Postal has been a great effort and we could really use your help on many areas:
 If any of that sounds cool to you, please send a pull request!
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms that you can find here: [CodeOfConduct][].
-
-## Requirements
-
-- Swift 2.2.x / Xcode 7.3 | Swift 2.3.x / Xcode 8
-- OS X 10.10 or later
-- iOS 8.0 or later
 
 ## Installation
 
