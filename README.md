@@ -17,9 +17,9 @@ Postal is a swift framework providing simple access to common email providers.
 let postal = Postal(configuration: .icloud(login: "myemail@icloud.com", password: "mypassword"))
 postal.connect { result in
 	switch result {
-	case .Success:
+	case .success:
 	    print("success")
-	case .Failure(let error):
+	case .failure(let error):
 	    print("error: \(error)")
 	}
 }
@@ -31,9 +31,9 @@ postal.connect { result in
 let filter = .subject(value: "Foobar") && .from(value: "foo@bar.com")
 postal.search("INBOX", filter: filter) { result in
 	switch result {
-	case .Success(let indexes):
+	case .success(let indexes):
 	    print("success: \(indexes)")
-	case .Failure(let error):
+	case .failure(let error):
 	    print("error: \(error)")
 	}
 }
@@ -77,6 +77,12 @@ Postal has been a great effort and we could really use your help on many areas:
 If any of that sounds cool to you, please send a pull request!
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms that you can find here: [CodeOfConduct][].
+
+## Requirements
+
+- Xcode 8
+- OS X 10.10 or later
+- iOS 8.0 or later
 
 ## Installation
 
