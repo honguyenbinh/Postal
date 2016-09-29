@@ -51,15 +51,11 @@ extension Data {
         var decodedLength: Int = 0
         let decodeFunc = partial ? mailmime_part_parse_partial : mailmime_part_parse
         
-        // (_ message: UnsafePointer<Int8>!, _ length: Int, _ indx: UnsafeMutablePointer<Int>!, _ encoding: Int32, _ result: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>!, _ result_len: UnsafeMutablePointer<Int>!)
-        
         let _ = withUnsafeBytes { (bytes: UnsafePointer<Int8>) in
             decodeFunc(bytes, count, &curToken, Int32(mechanism), &decodedBytes, &decodedLength)
         }
         
-        let decodedData = Data(bytesNoCopy: UnsafeMutableRawPointer(decodedBytes!), count: decodedLength, deallocator: .custom({ (pointer, length) in
-            free(pointer)
-        }))
+        let decodedData = Data(bytesNoCopy: UnsafeMutableRawPointer(decodedBytes!), count: decodedLength, deallocator: .free)
         
         let remaining: Data?
         if decodedLength < count {

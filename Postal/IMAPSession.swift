@@ -33,11 +33,11 @@ final class IMAPSession {
     let configuration: Configuration
     let imap: UnsafeMutablePointer<mailimap>
     
-    fileprivate(set) var capabilities: IMAPCapability = []
-    fileprivate(set) var defaultNamespace: IMAPNamespace? = nil
-    fileprivate var serverIdentity = IMAPIdentity([:])
+    private(set) var capabilities: IMAPCapability = []
+    private(set) var defaultNamespace: IMAPNamespace? = nil
+    private var serverIdentity = IMAPIdentity([:])
     
-    fileprivate var selectedFolder: String = ""
+    private var selectedFolder: String = ""
     
     var logger: Logger? {
         didSet {
@@ -57,7 +57,7 @@ final class IMAPSession {
             let buffer = buffer
         else { return }
 
-        let session = Unmanaged<IMAPSession>.fromOpaque(context).takeRetainedValue()  //.takeUnretainedValue()
+        let session = Unmanaged<IMAPSession>.fromOpaque(context).takeRetainedValue() //.takeUnretainedValue()
         
         //if let str = String(data: Data(bytes: UnsafePointer<UInt8>(buffer), count: size - 1), encoding: String.Encoding.utf8) , !str.isEmpty {
         if let str = String.fromUTF8CString(buffer), !str.isEmpty {
@@ -236,9 +236,8 @@ final class IMAPSession {
         serverIdentity = IMAPIdentity(dic)
     }
     
-    @discardableResult fileprivate func checkCertificateIfNeeded() throws -> Bool {
-        guard configuration.checkCertificateEnabled else { return true }
+    fileprivate func checkCertificateIfNeeded() throws{
+        guard configuration.checkCertificateEnabled else { return }
         guard checkCertificate(imap.pointee.imap_stream, hostname: configuration.hostname) else { throw IMAPError.certificate.asPostalError }
-        return true
     }
 }

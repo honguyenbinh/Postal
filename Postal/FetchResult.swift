@@ -55,8 +55,8 @@ public struct FetchResult {
 }
 
 struct FetchResultBuilder {
-    fileprivate let _addParsedAttribute: (MessageAttribute) -> Void
-    fileprivate let _build: () -> FetchResult?
+    private let _addParsedAttribute: (MessageAttribute) -> Void
+    private let _build: () -> FetchResult?
     
     init(flags: FetchFlag) {
         var builtResult = FetchResult()

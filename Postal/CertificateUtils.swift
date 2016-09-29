@@ -40,7 +40,7 @@ func checkCertificate(_ stream: UnsafeMutablePointer<mailstream>, hostname: Stri
         }
         .flatMap { SecCertificateCreateWithData(nil, $0) }
     
-    let policy = SecPolicyCreateSSL(true, hostname as CFString?)
+    let policy = SecPolicyCreateSSL(true, hostname as CFString)
     var trustCallback: SecTrust?
     guard noErr == SecTrustCreateWithCertificates(certificates as CFTypeRef, policy, &trustCallback) else { return false }
     guard let trust = trustCallback else { return false }

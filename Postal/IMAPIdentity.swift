@@ -25,7 +25,7 @@
 import Foundation
 
 struct IMAPIdentity {
-    fileprivate let infos: [String: String]
+    private let infos: [String: String]
     
     var vendor: String? { return infos["vendor"] }
     var name: String? { return infos["name"] }

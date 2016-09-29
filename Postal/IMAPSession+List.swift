@@ -48,7 +48,8 @@ extension IMAPSession {
         return sequence.flatMap { (folder: mailimap_mailbox_list) -> Folder? in
             guard let name = String.fromUTF8CString(folder.mb_name) else { return nil }
             var mb_delimiter: [CChar] = [ folder.mb_delimiter, 0 ]
-            guard let delimiter = String.fromUTF8CString(&mb_delimiter) else { return nil }
+            let delimiter = String(cString: &mb_delimiter)
+
             return Folder(name: name, flags: FolderFlag(flags: folder.mb_flag), delimiter: delimiter)
         }
     }

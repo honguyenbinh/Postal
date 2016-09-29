@@ -281,11 +281,11 @@ private extension String {
         
         let list = clist_new()
         partIdList.forEach { id in
-            let idPtr: UnsafeMutablePointer<UInt32> = .allocate(capacity: 1)//    UnsafeMutablePointer<UInt32>(malloc(MemoryLayout<UInt32>.size))
+            let idPtr: UnsafeMutablePointer<UInt32> = .allocate(capacity: 1)
             idPtr.pointee = id
             clist_append(list, idPtr)
         }
         
-        return list!
+        return list
     }
 }
