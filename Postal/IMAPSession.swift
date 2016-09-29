@@ -57,7 +57,7 @@ final class IMAPSession {
             let buffer = buffer
         else { return }
 
-        let session = Unmanaged<IMAPSession>.fromOpaque(context).takeRetainedValue() //.takeUnretainedValue()
+        let session = Unmanaged<IMAPSession>.fromOpaque(context).takeUnretainedValue()
         
         //if let str = String(data: Data(bytes: UnsafePointer<UInt8>(buffer), count: size - 1), encoding: String.Encoding.utf8) , !str.isEmpty {
         if let str = String.fromUTF8CString(buffer), !str.isEmpty {
